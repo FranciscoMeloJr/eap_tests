@@ -1,4 +1,4 @@
-echo "Script to list jars inside EAP image's ironjacamar given a pod name"
+echo "Scrip to list jars inside EAP image's ironjacamar given a pod name"
 echo "ironjacamar main directory::::::::::::::"
 oc exec -it $1 -- ls -lrt /opt/eap/modules/system/layers/base/org/jboss/ironjacamar/
 echo "ironjacamar/jdbcadapters directory::::::::::::::"
