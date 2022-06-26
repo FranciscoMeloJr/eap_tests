@@ -1,0 +1,1 @@
+Red Hat EAP - Version EAP 7.4.4 + Application jar: ServletExamples.war
