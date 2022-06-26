@@ -1,14 +1,13 @@
 #!/bin/bash
-
 # Title: test application ServletExamples
 # Summary: Script to test an application deployed in EAP - given the route
-# Parameter Required: none
+# Parameter Required: route
+# Example:  ./test_application.sh servlet-examples-eap-binary.apps.ci-ln-xrgww92-72292.origin-ci-int-gce.dev.rhcloud.com
 
-application="ServletExamples/"
 # oc get routes <--- get the route and then put here:
 # http://servlet-examples-eap-binary.apps.com/ServletExamples/
-routes=$(oc get routes --no-headers | awk '{print $2}')
-curl http://$routes/$application/
+application="ServletExamples/"
+curl http://$1/$application
 
 ### EXPECTED OUTPUT:
 
