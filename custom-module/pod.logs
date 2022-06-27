@@ -1,0 +1,188 @@
+[fdemeloj@fdemeloj template]$ oc get pods -w
+NAME                              READY     STATUS             RESTARTS   AGE
+eap-app-1-deploy                  1/1       Running            0          1m
+eap-app-1-kb542                   0/1       CrashLoopBackOff   3          1m
+eap-app-2-build                   0/1       Completed          0          2m
+eap-app-build-artifacts-1-build   0/1       Completed          0          4m
+^C[fdemeloj@fdemeloj template]$ oc log eap-app-1-kb542
+log is DEPRECATED and will be removed in a future version. Use logs instead.
+2022-06-27 02:17:23 Launching EAP Server
+INFO Configuring JGroups cluster traffic encryption protocol to SYM_ENCRYPT.
+WARN Detected missing JGroups encryption configuration, the communication within the cluster WILL NOT be encrypted.
+INFO Configuring JGroups discovery protocol to dns.DNS_PING
+INFO Using PicketBox SSL configuration.
+INFO Access log is disabled, ignoring configuration.
+INFO Server started in admin mode, CLI script executed during server boot.
+INFO Running jboss-eap-7/eap74-openjdk11-runtime-openshift-rhel8 image, version 7.4.5
+=========================================================================
+
+  JBoss Bootstrap Environment
+
+  JBOSS_HOME: /opt/eap
+
+  JAVA: /usr/lib/jvm/java-11/bin/java
+
+  JAVA_OPTS: -javaagent:"/opt/eap/jboss-modules.jar"  -server -Xlog:gc*:file="/opt/eap/standalone/log/gc.log":time,uptimemillis:filecount=5,filesize=3M -Xms128m -Xmx512m -XX:MetaspaceSize=96m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=jdk.nashorn.api -Djava.awt.headless=true -XX:+UseParallelOldGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom   --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.security=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED --add-opens=java.naming/javax.naming=ALL-UNNAMED
+
+=========================================================================
+
+02:17:25,191 INFO  [org.jboss.modules] (main) JBoss Modules version 1.12.0.Final-redhat-00001
+02:17:25,951 INFO  [org.jboss.msc] (main) JBoss MSC version 1.4.12.Final-redhat-00001
+02:17:25,963 INFO  [org.jboss.threads] (main) JBoss Threads version 2.4.0.Final-redhat-00001
+02:17:26,121 INFO  [org.jboss.as] (MSC service thread 1-2) WFLYSRV0049: JBoss EAP 7.4.5.GA (WildFly Core 15.0.13.Final-redhat-00001) starting
+02:17:26,125 DEBUG [org.jboss.as.config] (MSC service thread 1-2) Configured system properties:
+	[Standalone] = 
+	awt.toolkit = sun.awt.X11.XToolkit
+	file.encoding = ANSI_X3.4-1968
+	file.separator = /
+	java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+	java.awt.headless = true
+	java.awt.printerjob = sun.print.PSPrinterJob
+	java.class.path = /opt/eap/jboss-modules.jar
+	java.class.version = 55.0
+	java.home = /usr/lib/jvm/java-11-openjdk-11.0.15.0.10-2.el8_6.x86_64
+	java.io.tmpdir = /tmp
+	java.library.path = /usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
+	java.net.preferIPv4Stack = true
+	java.runtime.name = OpenJDK Runtime Environment
+	java.runtime.version = 11.0.15+10-LTS
+	java.security.egd = file:/dev/./urandom
+	java.specification.name = Java Platform API Specification
+	java.specification.vendor = Oracle Corporation
+	java.specification.version = 11
+	java.util.logging.manager = org.jboss.logmanager.LogManager
+	java.vendor = Red Hat, Inc.
+	java.vendor.url = https://www.redhat.com/
+	java.vendor.url.bug = https://bugzilla.redhat.com/enter_bug.cgi?product=Red%20Hat%20Enterprise%20Linux%208&component=java-11-openjdk
+	java.vendor.version = 18.9
+	java.version = 11.0.15
+	java.version.date = 2022-04-19
+	java.vm.compressedOopsMode = 32-bit
+	java.vm.info = mixed mode, sharing
+	java.vm.name = OpenJDK 64-Bit Server VM
+	java.vm.specification.name = Java Virtual Machine Specification
+	java.vm.specification.vendor = Oracle Corporation
+	java.vm.specification.version = 11
+	java.vm.vendor = Red Hat, Inc.
+	java.vm.version = 11.0.15+10-LTS
+	javax.management.builder.initial = org.jboss.as.jmx.PluggableMBeanServerBuilder
+	jboss.bind.address = 10.129.2.28
+	jboss.bind.address.management = 0.0.0.0
+	jboss.bind.address.private = 10.129.2.28
+	jboss.home.dir = /opt/eap
+	jboss.host.name = eap-app-1-kb542
+	jboss.messaging.cluster.password = <redacted>
+	jboss.messaging.host = 10.129.2.28
+	jboss.modules.dir = /opt/eap/modules
+	jboss.modules.system.pkgs = jdk.nashorn.api
+	jboss.node.name = eap-app-1-kb542
+	jboss.qualified.host.name = eap-app-1-kb542
+	jboss.server.base.dir = /opt/eap/standalone
+	jboss.server.config.dir = /opt/eap/standalone/configuration
+	jboss.server.data.dir = /opt/eap/standalone/data
+	jboss.server.deploy.dir = /opt/eap/standalone/data/content
+	jboss.server.log.dir = /opt/eap/standalone/log
+	jboss.server.name = eap-app-1-kb542
+	jboss.server.persist.config = true
+	jboss.server.temp.dir = /opt/eap/standalone/tmp
+	jdk.debug = release
+	line.separator = 
+
+	logging.configuration = file:/opt/eap/standalone/configuration/logging.properties
+	module.path = /opt/eap/modules
+	org.jboss.boot.log.file = /opt/eap/standalone/log/server.log
+	org.jboss.resolver.warning = true
+	org.wildfly.internal.cli.boot.hook.marker.dir = /tmp/cli-boot-reload-marker-1656296244
+	org.wildfly.internal.cli.boot.hook.script = /tmp/cli-script-1656296243.cli
+	org.wildfly.internal.cli.boot.hook.script.error.file = /tmp/cli-script-error-1656296243.cli
+	org.wildfly.internal.cli.boot.hook.script.output.file = /tmp/cli-script-output-1656296243.cli
+	org.wildfly.internal.cli.boot.hook.script.properties = /tmp/cli-script-property-1656296243.cli
+	org.wildfly.internal.cli.boot.hook.script.warn.file = /tmp/cli-warning-1656296243.log
+	os.arch = amd64
+	os.name = Linux
+	os.version = 4.18.0-305.49.1.el8_4.x86_64
+	path.separator = :
+	sun.arch.data.model = 64
+	sun.boot.library.path = /usr/lib/jvm/java-11-openjdk-11.0.15.0.10-2.el8_6.x86_64/lib
+	sun.cpu.endian = little
+	sun.cpu.isalist = 
+	sun.io.unicode.encoding = UnicodeLittle
+	sun.java.command = /opt/eap/jboss-modules.jar -javaagent:/usr/share/java/jolokia-jvm-agent/jolokia-jvm.jar=config=/opt/jboss/container/jolokia/etc/jolokia.properties -mp /opt/eap/modules org.jboss.as.standalone -Djboss.home.dir=/opt/eap -Djboss.server.base.dir=/opt/eap/standalone -c standalone-openshift.xml -bmanagement 0.0.0.0 -Djboss.server.data.dir=/opt/eap/standalone/data -Dwildfly.statistics-enabled=true -b 10.129.2.28 -bprivate 10.129.2.28 -Djboss.node.name=eap-app-1-kb542 -Djboss.messaging.host=10.129.2.28 -Djboss.messaging.cluster.password=<redacted> --start-mode=admin-only -Dorg.wildfly.internal.cli.boot.hook.script=/tmp/cli-script-1656296243.cli -Dorg.wildfly.internal.cli.boot.hook.marker.dir=/tmp/cli-boot-reload-marker-1656296244 -Dorg.wildfly.internal.cli.boot.hook.script.properties=/tmp/cli-script-property-1656296243.cli -Dorg.wildfly.internal.cli.boot.hook.script.output.file=/tmp/cli-script-output-1656296243.cli -Dorg.wildfly.internal.cli.boot.hook.script.error.file=/tmp/cli-script-error-1656296243.cli -Dorg.wildfly.internal.cli.boot.hook.script.warn.file=/tmp/cli-warning-1656296243.log
+	sun.java.launcher = SUN_STANDARD
+	sun.jnu.encoding = ANSI_X3.4-1968
+	sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+	sun.os.patch.level = unknown
+	user.country = US
+	user.dir = /home/jboss
+	user.home = /home/jboss
+	user.language = en
+	user.name = 1000680000
+	user.timezone = Etc/UTC
+	wildfly.statistics-enabled = true
+02:17:26,126 DEBUG [org.jboss.as.config] (MSC service thread 1-2) VM Arguments: -D[Standalone] -javaagent:/opt/eap/jboss-modules.jar -Xlog:gc*:file=/opt/eap/standalone/log/gc.log:time,uptimemillis:filecount=5,filesize=3M -Xms128m -Xmx512m -XX:MetaspaceSize=96m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=jdk.nashorn.api -Djava.awt.headless=true -XX:+UseParallelOldGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.security=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED --add-opens=java.naming/javax.naming=ALL-UNNAMED -Dorg.jboss.boot.log.file=/opt/eap/standalone/log/server.log -Dlogging.configuration=file:/opt/eap/standalone/configuration/logging.properties 
+02:17:26,342 INFO  [stdout] (JolokiaStart) I> No access restrictor found, access to any MBean is allowed
+02:17:26,352 INFO  [stdout] (JolokiaStart) Jolokia: Agent started with URL https://10.129.2.28:8778/jolokia/
+02:17:27,130 WARN  [org.jboss.as.clustering.infinispan] (Controller Boot Thread) WFLYCLINF0004: The 'strategy' attribute of the 'eviction' element is no longer supported and will be ignored
+02:17:27,131 WARN  [org.jboss.as.clustering.infinispan] (Controller Boot Thread) WFLYCLINF0004: The 'strategy' attribute of the 'eviction' element is no longer supported and will be ignored
+02:17:27,131 WARN  [org.jboss.as.clustering.infinispan] (Controller Boot Thread) WFLYCLINF0004: The 'strategy' attribute of the 'eviction' element is no longer supported and will be ignored
+02:17:27,132 WARN  [org.jboss.as.clustering.infinispan] (Controller Boot Thread) WFLYCLINF0004: The 'strategy' attribute of the 'eviction' element is no longer supported and will be ignored
+02:17:27,132 WARN  [org.jboss.as.clustering.infinispan] (Controller Boot Thread) WFLYCLINF0004: The 'strategy' attribute of the 'eviction' element is no longer supported and will be ignored
+02:17:27,194 INFO  [org.jboss.as.remoting] (Controller Boot Thread) WFLYRMT0024: The remoting subsystem is present but no io subsystem was found. An io subsystem was not required when remoting schema 'urn:jboss:domain:remoting:1.2' was current but now is, so a default subsystem is being added.
+02:17:27,252 ERROR [org.jboss.as.controller.management-operation] (ServerService Thread Pool -- 3) WFLYCTL0402: Subsystems [web] provided by legacy extension 'org.jboss.as.web' are not supported on servers running this version. Both the subsystem and the extension must be removed or migrated before the server will function.
+02:17:27,230 ERROR [org.jboss.as.controller.management-operation] (ServerService Thread Pool -- 23) WFLYCTL0402: Subsystems [threads] provided by legacy extension 'org.jboss.as.threads' are not supported on servers running this version. Both the subsystem and the extension must be removed or migrated before the server will function.
+02:17:27,273 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 16) WFLYCTL0033: Extension 'security' is deprecated and may not be supported in future versions
+02:17:27,253 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 3) WFLYCTL0033: Extension 'web' is deprecated and may not be supported in future versions
+02:17:27,611 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=native-interface' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+02:17:27,612 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+02:17:27,637 INFO  [org.jboss.as.ejb3] (Controller Boot Thread) WFLYEJB0486: Parameter 'default-clustered-sfsb-cache' was defined for the 'add' operation for resource '/subsystem=ejb3'. This parameter is deprecated and its previous behavior has been remapped to attribute 'default-sfsb-cache'. As a result the 'default-sfsb-cache' attribute has been set to '"clustered"' and the 'default-sfsb-passivation-disabled-cache' attribute has been set to '"simple"'.
+02:17:27,684 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'default-stack' in the resource at address '/subsystem=jgroups' is deprecated, and may be removed in a future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+02:17:27,687 WARN  [org.jboss.as.clustering.jgroups] (Controller Boot Thread) WFLYCLJG0030: Protocol pbcast.NAKACK is obsolete and will be auto-updated to pbcast.NAKACK2
+02:17:27,688 WARN  [org.jboss.as.clustering.jgroups] (Controller Boot Thread) WFLYCLJG0030: Protocol UNICAST2 is obsolete and will be auto-updated to UNICAST3
+02:17:27,691 WARN  [org.jboss.as.clustering.jgroups] (Controller Boot Thread) WFLYCLJG0030: Protocol MERGE2 is obsolete and will be auto-updated to MERGE3
+02:17:27,693 WARN  [org.jboss.as.clustering.jgroups] (Controller Boot Thread) WFLYCLJG0030: Protocol pbcast.NAKACK is obsolete and will be auto-updated to pbcast.NAKACK2
+02:17:27,693 WARN  [org.jboss.as.clustering.jgroups] (Controller Boot Thread) WFLYCLJG0030: Protocol UNICAST2 is obsolete and will be auto-updated to UNICAST3
+02:17:27,828 INFO  [org.xnio] (MSC service thread 1-2) XNIO version 3.8.7.SP1-redhat-00001
+02:17:27,827 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+02:17:27,839 INFO  [org.xnio.nio] (MSC service thread 1-2) XNIO NIO Implementation Version 3.8.7.SP1-redhat-00001
+02:17:27,886 INFO  [org.jboss.as.patching] (MSC service thread 1-1) WFLYPAT0050: JBoss EAP cumulative patch ID is: base, one-off patches include: none
+02:17:27,893 INFO  [org.jboss.remoting] (MSC service thread 1-2) JBoss Remoting version 5.0.24.SP1-redhat-00001
+02:17:27,958 INFO  [org.jboss.as.remoting] (MSC service thread 1-2) WFLYRMT0001: Listening on 0.0.0.0:9999
+02:17:28,080 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+02:17:28,082 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: JBoss EAP 7.4.5.GA (WildFly Core 15.0.13.Final-redhat-00001) started in 3331ms - Started 55 of 70 services (29 services are lazy, passive or on-demand)
+02:17:28,084 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://0.0.0.0:9990/management
+02:17:28,084 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0054: Admin console is not enabled
+02:17:28,086 INFO  [org.jboss.as.controller] (Controller Boot Thread) WFLYCTL0472: Checking for presence of marker file indicating that the server has been restarted following execution of the additional commands from the CLI script
+02:17:28,086 INFO  [org.jboss.as.controller] (Controller Boot Thread) WFLYCTL0474: No marker file found indicating that the server has been restarted following execution of the additional commands from the CLI script
+02:17:28,086 INFO  [org.jboss.as.controller] (Controller Boot Thread) WFLYCTL0466: Initialised the additional boot CLI script functionality. The CLI commands will be read from /tmp/cli-script-1656296243.cli. The server will be rebooted to normal mode after these have been executed
+02:17:28,097 INFO  [org.jboss.as.controller] (Controller Boot Thread) WFLYCTL0467: Running the additional commands from the CLI script /tmp/cli-script-1656296243.cli against the server which is running in admin-only mode
+02:17:28,098 INFO  [org.jboss.as.cli] (Controller Boot Thread) WFLYCLI0001: Processing CLI script /tmp/cli-script-1656296243.cli
+02:17:28,432 ERROR [org.jboss.as.cli] (Controller Boot Thread) WFLYCLI0002: Error processing CLI script /tmp/cli-script-1656296243.cli
+02:17:28,432 ERROR [org.jboss.as.cli] (Controller Boot Thread) WFLYCLI0004: CLI execution output:
+02:17:28,433 ERROR [org.jboss.as.cli] (Controller Boot Thread) [standalone@embedded /] /subsystem=ee/service=default-bindings:undefine-attribute(name=jms-connection-factory)
+
+02:17:28,437 ERROR [org.jboss.as.controller] (Controller Boot Thread) WFLYCTL0002: Error booting the container: java.lang.RuntimeException: java.lang.IllegalStateException: WFLYCLI0009: Unexpected exception while processing CLI command /subsystem=ee/service=default-bindings:undefine-attribute(name=jms-connection-factory) from /tmp/cli-script-1656296243.cli
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.BootScriptInvoker.runCliScript(BootScriptInvoker.java:104)
+	at org.jboss.as.controller@15.0.13.Final-redhat-00001//org.jboss.as.controller.AbstractControllerService$AdditionalBootCliScriptInvocation.executeAdditionalCliScript(AbstractControllerService.java:1015)
+	at org.jboss.as.controller@15.0.13.Final-redhat-00001//org.jboss.as.controller.AbstractControllerService$AdditionalBootCliScriptInvocation.invoke(AbstractControllerService.java:997)
+	at org.jboss.as.controller@15.0.13.Final-redhat-00001//org.jboss.as.controller.AbstractControllerService.executeAdditionalCliBootScript(AbstractControllerService.java:798)
+	at org.jboss.as.server@15.0.13.Final-redhat-00001//org.jboss.as.server.ServerService.postBoot(ServerService.java:458)
+	at org.jboss.as.controller@15.0.13.Final-redhat-00001//org.jboss.as.controller.AbstractControllerService$1.run(AbstractControllerService.java:455)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.IllegalStateException: WFLYCLI0009: Unexpected exception while processing CLI command /subsystem=ee/service=default-bindings:undefine-attribute(name=jms-connection-factory) from /tmp/cli-script-1656296243.cli
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.BootScriptInvoker.processFile(BootScriptInvoker.java:124)
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.BootScriptInvoker.runCliScript(BootScriptInvoker.java:87)
+	... 6 more
+Caused by: org.jboss.as.cli.CommandLineException: {
+    "outcome" => "failed",
+    "failure-description" => "WFLYCTL0216: Management resource '[
+    (\"subsystem\" => \"ee\"),
+    (\"service\" => \"default-bindings\")
+]' not found",
+    "rolled-back" => true
+}
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.handlers.OperationRequestHandler.handle(OperationRequestHandler.java:95)
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.CommandContextImpl.handleOperation(CommandContextImpl.java:1887)
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.CommandContextImpl.handle(CommandContextImpl.java:873)
+	at org.jboss.as.cli@15.0.13.Final-redhat-00001//org.jboss.as.cli.impl.BootScriptInvoker.processFile(BootScriptInvoker.java:120)
+	... 7 more
+

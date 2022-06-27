@@ -1,3 +1,5 @@
+oc project default
+oc delete eap-demo-template
 oc new-project eap-demo-template
 oc create -f ../../automation/1979710\ fdemelojtest-secret.yaml
 oc secrets link default 1979710-fdemelojtest-pull-secret --for=pull
