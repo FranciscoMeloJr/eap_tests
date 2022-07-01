@@ -1,0 +1,5 @@
+embed-server --std-out=echo --admin-only --server-config=standalone-openshift.xml 
+batch
+/subsystem=infinispan/cache-container=web/invalidation-cache=infinispansmile:add()
+run-batch
+stop-embedded-server
