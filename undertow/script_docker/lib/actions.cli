@@ -1,0 +1,4 @@
+embed-server --std-out=echo --admin-only --server-config=standalone-openshift.xml 
+/subsystem=undertow/server=default-server/http-listener=default:write-attribute(name=max-post-size,value=31457280)
+run-batch
+stop-embedded-server
