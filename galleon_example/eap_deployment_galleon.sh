@@ -15,5 +15,8 @@ oc new-app --template=eap74-basic-s2i -p IMAGE_STREAM_NAMESPACE=eap-galleon -p E
  -p EAP_RUNTIME_IMAGE_NAME=jboss-eap74-openjdk11-runtime-openshift:7.4.0 \
  -p SOURCE_REPOSITORY_URL=https://github.com/jboss-developer/jboss-eap-quickstarts \
  -p SOURCE_REPOSITORY_REF=7.4.x \
- -p GALLEON_PROVISION_LAYERS=jaxrs-server,postgresql-driver,web-clustering \
+ -p GALLEON_PROVISION_LAYERS=jaxrs-server,web-clustering,sso \
  -p CONTEXT_DIR=helloworld-html5
+
+ ## to test curl -v http://127.0.0.1:8080/
+ ## <title>HTML5 + REST Hello World</title>
