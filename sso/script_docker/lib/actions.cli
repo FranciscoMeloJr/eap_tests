@@ -1,0 +1,13 @@
+embed-server --std-out=echo --admin-only --server-config=standalone-openshift.xml 
+/extension=org.keycloak.keycloak-adapter-subsystem/:add(module=org.keycloak.keycloak-adapter-subsystem)
+/subsystem=keycloak:add
+batch
+/subsystem=elytron/custom-realm=KeycloakOIDCRealm:add(class-name=org.keycloak.adapters.elytron.KeycloakSecurityRealm, module=org.keycloak.keycloak-wildfly-elytron-oidc-adapter)
+/subsystem=elytron/security-domain=KeycloakDomain:add(default-realm=KeycloakOIDCRealm,permission-mapper=default-permission-mapper,security-event-listener=local-audit,realms=[{realm=KeycloakOIDCRealm}])
+/subsystem=elytron/constant-realm-mapper=keycloak-oidc-realm-mapper:add(realm-name=KeycloakOIDCRealm)
+/subsystem=elytron/service-loader-http-server-mechanism-factory=keycloak-oidc-http-server-mechanism-factory:add(module=org.keycloak.keycloak-wildfly-elytron-oidc-adapter)
+/subsystem=elytron/aggregate-http-server-mechanism-factory=keycloak-http-server-mechanism-factory:add(http-server-mechanism-factories=[keycloak-oidc-http-server-mechanism-factory, global])
+/subsystem=elytron/http-authentication-factory=keycloak-http-authentication:add(security-domain=KeycloakDomain,http-server-mechanism-factory=keycloak-http-server-mechanism-factory,mechanism-configurations=[{mechanism-name=KEYCLOAK,mechanism-realm-configurations=[{realm-name=KeycloakOIDCRealm,realm-mapper=keycloak-oidc-realm-mapper}]}])
+/subsystem=elytron/http-authentication-factory=keycloak-http-authentication:list-add(name=mechanism-configurations, value={mechanism-name=KEYCLOAK,mechanism-realm-configurations=[{realm-name=KeycloakOIDCRealm,realm-mapper=keycloak-oidc-realm-mapper}]})
+run-batch
+stop-embedded-server
