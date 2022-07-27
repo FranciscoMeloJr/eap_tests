@@ -21,6 +21,7 @@ oc get cm | grep $cmname
 
 ## delete pod:
 echo "delete pods"
+echo "get pod logs"
 
 # to see if the cm file are there:
 #$ oc exec -it $podname -- ls /opt/eap/extensions
