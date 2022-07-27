@@ -1,0 +1,1 @@
+Creating image with standalone.xml with UFC

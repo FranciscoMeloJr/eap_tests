@@ -1,0 +1,5 @@
+embed-server --std-out=echo --admin-only --server-config=standalone-openshift.xml 
+/subsystem=jgroups/stack=tcp/protocol=UFC:add(add-index=10)
+run-batch
+stop-embedded-server
+

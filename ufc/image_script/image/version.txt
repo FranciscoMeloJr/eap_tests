@@ -1,0 +1,1 @@
+JBoss EAP image + Jgroup's UFC layer (on top of MFC)
